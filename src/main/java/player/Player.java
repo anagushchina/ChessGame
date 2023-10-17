@@ -1,3 +1,7 @@
+package player;
+
+import pieces.Piece;
+
 public class Player {
 
     private String playerName;
@@ -25,37 +29,39 @@ public class Player {
     public Player (String name, String email, boolean isWhite, int rank, int age){
         if(name == null || name.isBlank()){
             throw new IllegalArgumentException("Name should not be empty");
-        }
-        else {
+        } else {
             this.playerName = name;
         }
 
         if(email == null || email.isBlank()){
             throw new IllegalArgumentException("Email should not be empty");
-        }
-        else if(email.contains("@") == false || email.contains(".") == false){
+        } else if(!email.contains("@") || !email.contains(".")){
             throw new IllegalArgumentException("Email should contain '@' and '.'");
-        }
-        else {
+        } else {
             this.playerEmail = email;
         }
 
         if(rank<100 || rank > 3000){
             throw new IllegalArgumentException("The rank should be in range of 100 and 3000");
-        }
-        else{
+        } else{
             this.playerRank =  rank;
         }
 
         if(age<18 || age>100){
             throw new IllegalArgumentException("The age should be in range of 18 and 100");
-        }
-        else{
+        } else{
             this.playerAge = age;
         }
 
-
         this.isPlayerWhite = isWhite;
+    }
+
+    public void movePiece (Piece piece, Spot spot){
+        if(isPlayerWhite != piece.isWhite()){
+            throw new IllegalArgumentException("Incorrect piece color");
+        }
+        piece.setSpot(spot);
+        System.out.println(piece.getPieceName() + " is moved to " + spot);
     }
 
     public void setPlayerRank(int rank){
@@ -68,7 +74,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "{" +
                 "playerName='" + playerName + '\'' +
                 ", playerEmail='" + playerEmail + '\'' +
                 ", isPieceWhite=" + isPlayerWhite +
@@ -76,16 +82,4 @@ public class Player {
                 ", playerAge=" + playerAge +
                 '}';
     }
-
-    public void movePiece (Piece piece, Spot spot){
-        if(isPlayerWhite != piece.isWhite()){
-            throw new IllegalArgumentException("Incorrect piece color");
-        }
-        piece.setSpot(spot);
-        System.out.println(piece.getPieceName() + " is moved to " + spot);;
-    }
-
-
-
-
 }

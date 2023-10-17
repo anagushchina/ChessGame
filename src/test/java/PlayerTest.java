@@ -1,7 +1,10 @@
+import game.ChessMain;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import pieces.Piece;
+import player.Player;
+import player.Spot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,22 +19,7 @@ public class PlayerTest {
     public static void setUp(){
         ChessMain chessMain = new ChessMain();
         players = chessMain.createPlayers();
-        pieceHashMap = chessMain.createPieces();
-    }
-
-    @BeforeEach
-    public void beforeEach(){
-        System.out.println("BeforeEach method");
-    }
-
-    @AfterEach
-    public void afterEach(){
-        System.out.println("AfterEach method");
-    }
-
-    @AfterAll
-    public static void tearDown(){
-        System.out.println("AfterAll method");
+        pieceHashMap = chessMain.createBoard();
     }
 
     @Test
@@ -54,8 +42,6 @@ public class PlayerTest {
         });
     }
 
-
-
     @Test
     public void playerCreationSuccessTest(){
         Player whitePlayer = new Player("Beth Harmon", "bethharmon@gmail.com", true, 2000, 20);
@@ -70,8 +56,7 @@ public class PlayerTest {
     @MethodSource("nameError")
     public void playerCreationIncorrectNameTest(String name){
         Assertions.assertThrows(IllegalArgumentException.class, () ->{
-            Player whitePlayer = new Player(name, "bethharmon@gmail.com", true, 2000, 20);
-            ;
+            new Player(name, "bethharmon@gmail.com", true, 2000, 20);
         });
     }
 
@@ -79,11 +64,9 @@ public class PlayerTest {
     @MethodSource("emailError")
     public void playerCreationIncorrectEmailTest(String email){
         Assertions.assertThrows(IllegalArgumentException.class, () ->{
-            Player whitePlayer = new Player("Beth Harmon", email, true, 2000, 20);
-            ;
+            new Player("Beth Harmon", email, true, 2000, 20);
         });
     }
-
 
     static Stream<String> nameError(){
         return Stream.of("", "  ", null);

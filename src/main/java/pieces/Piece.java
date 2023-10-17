@@ -1,3 +1,7 @@
+package pieces;
+
+import player.Spot;
+
 public abstract class Piece {
 
     private String pieceName;
@@ -39,7 +43,7 @@ public abstract class Piece {
 
     @Override
     public String toString() {
-        return "Piece{" +
+        return "{" +
                 "pieceName='" + pieceName + '\'' +
                 ", spot=" + spot +
                 ", id='" + id + '\'' +

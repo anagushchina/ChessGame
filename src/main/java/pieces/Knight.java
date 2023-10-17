@@ -1,3 +1,7 @@
+package pieces;
+
+import player.Spot;
+
 public class Knight extends Piece{
 
     private static final String name = "Knight";

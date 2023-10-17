@@ -1,3 +1,5 @@
+package player;
+
 public class Spot {
 
     String x;
@@ -15,21 +17,13 @@ public class Spot {
         return x;
     }
 
-    public void setX(String x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
     @Override
     public String toString() {
-        return "Spot{" +
+        return "{" +
                 "x='" + x + '\'' +
                 ", y=" + y +
                 '}';

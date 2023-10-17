@@ -65,7 +65,7 @@
                     <archive>
                         <manifest>
                             <!-- Jar file entry point -->
-                            <mainClass>ChessMain</mainClass>
+                            <mainClass>game.ChessMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
